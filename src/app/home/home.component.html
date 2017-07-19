@@ -1,0 +1,65 @@
+<div class="content-container">
+    <div class="content-area">
+
+       <ngui-map [options]="mapOptions">
+            <directions-renderer
+                [suppressMarkers]="true"
+                [draggable]="true"
+                (directions_changed)="directionsChanged()"
+                [directions-request]="direction">
+            </directions-renderer>
+
+       </ngui-map>
+
+       <div class="loader" *ngIf="!mapLoaded">
+           <div class="spinner"></div>
+       </div>
+
+    </div>
+
+    <nav class="sidenav">
+        <div class="user-input">
+            <form (submit)="showDirection()">
+            <div>
+                <input name="origin" placeholder="Enter a start address" type="text" [(ngModel)]="origin" (ngModelChange)="validate()"/>
+            </div>
+            <div>
+                <input name="destination" placeholder="Enter an end address" type="text" [(ngModel)]="destination" (ngModelChange)="validate()"/>
+            </div>
+            <div class="select">
+                <select [(ngModel)]="mode" name="mode">
+                    <option *ngFor="let mode of modes" [value]="mode">{{modeStrings[mode]}}</option>
+                </select>
+            </div>
+            <div class="select" *ngIf="mode === 'DRIVING'">
+                <select [(ngModel)]="drivingMode" (ngModelChange)="drivingModeChange($event)" name="drivingMode">
+                    <option *ngFor="let drivingMode of drivingModes" [value]="drivingMode">{{drivingModeString[drivingMode]}}</option>
+                </select>
+            </div>
+            <div class="select" *ngIf="mode === 'DRIVING' && drivingMode !== 'TAXI'">
+                <select [(ngModel)]="vehicleType" name="vehicleType">
+                    <option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType">{{vehicleTypeStrings[vehicleType]}}</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" (click)="showDirection()" name="submit" [disabled]="!buttonEnabled">Go</button>
+            </form>
+        </div>
+
+        <div class="results" *ngIf="directionsResult">
+            <h4>Route information</h4>
+            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
+            <div><b>Duration:</b> {{duration}} </div>
+            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
+            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+        </div>
+
+        <div class="steps" *ngIf="directionsResult">
+            <h4>Directions</h4>
+            <ol>
+                <li *ngFor="let step of directionsResult.routes[0].legs[0].steps"
+                     [innerHTML]="step.instructions">
+                </li>
+            </ol>
+        </div>
+    </nav>
+</div>
