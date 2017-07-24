@@ -1,0 +1,189 @@
+<div class="content-container">
+    <div class="content-area">
+        <h1>About</h1>
+
+        <p>
+        Map My Emissions lets you compare the greenhouse gas emissions associated with various modes of transport so you can make more informed decisions.
+        </p>
+
+        <p>
+        You tell us where you want to go, and your preferred mode of transport, and our A algorithm will calculate the emissions associated with your trip.  You will see the total emissions in pounds of carbon dioxide equivalent (CO2-e), as well as an estimate of the costs those emissions impose on society (based on the federal government’s “social cost of carbon”).
+        </p>
+
+        <p>
+        We’ll tell you how your emissions would change if you selected a different mode of transport. But, ultimately, you choose your journey. We know each life and each day is different – We simply offer information.
+        </p>
+
+        <h2>Methodology Used to Calculate Emissions</h2>
+
+        <p>Emissions calculations use data from Carbon Footprint Ltd’s Carbon Footprint Calculator for Individuals and Households. This data is based on emissions factors sourced from various government and independent bodies including:
+        </p>
+
+        <ul>
+            <li>the U.S. Environmental Protection Agency;</li>
+            <li>the U.S. Department of Energy;</li>
+            <li>the UK Vehicle Certification Agency;</li>
+            <li>the Australian Department of Environment; and</li>
+            <li>the World Resources Institute.</li>
+        </ul>
+
+        <p>
+        Using the data, we calculate per-mile emissions for each mode of transport. Then, we multiply those emissions by the number of miles travelled to produce a trip total. For trips involving multiple legs, using different modes of transport, we calculate emissions for each leg, in addition to the trip total.
+        </p>
+
+        <p>
+        For trips involving public transport, calculations reflect the precise type of transport used. Calculations are based on average per mile emissions for travel by bus, subway, local / commuter train, and long-distance train.
+        </p>
+
+        <p>
+        For trips involving driving, calculations are based on average per-mile emissions for the type of vehicle selected by the user, i.e. car, van, or motorbike. Calculations do not account for time spent idling (e.g., due to traffic).
+        </p>
+
+        <p>
+        For walking and biking, per-mile emissions are assumed to be zero.
+        </p>
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What modes of transport do you support?</h3>
+
+        <p>
+        Map My Emissions can be used to calculate the greenhouse gas emissions associated with catching public transport, driving, biking, and walking. Within the “public transport” category, emissions can be calculated for travel via bus, subway, local / commuter train, and long-distance train. Within the “driving” category, emissions can be calculated for cars, vans, and motorbikes. Users can select from the following options in each sub-category:
+        </p>
+
+        <clr-tabs>
+            <clr-tab>
+                <button clrTabLink>Car</button>
+                <clr-tab-content *clrIfActive>
+                    <table>
+                        <tr>
+                            <td class="vehicle-image"><img src="images/car.png" /></td>
+                        </tr>
+                        <tr>
+                            <td>• Small gasoline (up to 1.4 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Medium gasoline (1.4 to 2.0 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Large gasoline (over 2.0 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Small diesel (up to 1.4 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Medium diesel (1.4 to 2.0 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Large diesel (over 2.0 L)</td>
+                        </tr>
+                        <tr>
+                            <td>• Gasoline-hybrid</td>
+                        </tr>
+                        <tr>
+                            <td>• LPG</td>
+                        </tr>
+                        <tr>
+                            <td>• CNG</td>
+                        </tr>
+                    </table>
+                </clr-tab-content>
+            </clr-tab>
+
+            <clr-tab>
+                <button clrTabLink>Van</button>
+                <clr-tab-content *clrIfActive>
+                    <table>
+                        <tr>
+                            <td class="vehicle-image"><img src="images/van.png" /></td>
+                        </tr>
+                        <tr>
+                            <td>• Small gasoline (up to 1.3 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• Medium gasoline (1.3 to 1.7 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• Large gasoline (up to 3.5 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• Small diesel (up to 1.3 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• Medium diesel (1.3 to 1.7 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• Large diesel (up to 3.5 t)</td>
+                        </tr>
+                        <tr>
+                            <td>• LPG</td>
+                        </tr>
+                        <tr>
+                            <td>• CNG</td>
+                        </tr>
+                    </table>
+                </clr-tab-content>
+            </clr-tab>
+            <clr-tab>
+                <button clrTabLink>Motorbike</button>
+                <clr-tab-content *clrIfActive>
+                    <table>
+                        <tr>
+                            <td class="vehicle-image"><img src="images/motorbike.png" /></td>
+                        </tr>
+                        <tr>
+                            <td>• Small (up to 125 cc)</td>
+                        </tr>
+                        <tr>
+                            <td>• Medium (125 to 500 cc)</td>
+                        </tr>
+                        <tr>
+                            <td>• Large (over 500 cc)</td>
+                        </tr>
+                    </table>
+                </clr-tab-content>
+            </clr-tab>
+        </clr-tabs>
+
+        <h3>Can I enter multiple destinations?</h3>
+
+        <p>
+            No. At this time, Map My Emissions does not support multiple destinations, but we hope to add this functionality in the future.
+        </p>
+
+        <h3>What greenhouse gas emissions are included in the calculation?</h3>
+
+        <p>
+        The emissions calculations take into account all greenhouse gases, including carbon dioxide (CO2), methane (CH4), nitrous oxide (N2O), Ozone (O3), Chlorofluorocarbons (CFCs), and hydrofluorocarbons (including HCFCs).
+        </p>
+
+        <h3>What units are emissions shown in?</h3>
+
+        <p>
+        Emissions are shown in pounds of carbon dioxide equivalent (CO2-e).
+        </p>
+
+        <h3>Can I get emissions for each leg of my trip?</h3>
+
+        <p>Yes. Map My Emissions shows you the greenhouse gas emissions associated with each leg of your trip and an overall total.
+        </p>
+
+        <h3>How accurate are the emissions calculations?</h3>
+
+        <p>
+        Calculations are based on average per-mile emissions associated with the mode of transport selected. In some cases, emissions may be higher or lower than calculated.
+        </p>
+
+        <h3>How do you calculate the cost of my emissions?</h3>
+
+        <p>
+        We estimate the cost of emissions associated with your trip using the federal government’s social cost of carbon. Developed by an interagency working group consisting of representatives of 11 federal government bodies, the social cost of carbon reflects the long-term costs imposed by greenhouse gas emissions. According to the Environmental Protection Agency, it is “a comprehensive estimate of the climate change damages and includes, among other things, changes in agricultural productivity, human health, property damages from increased flood risk and changes in energy system costs, such as reduced costs for heating and increased costs for air conditioning.”
+        </p>
+
+        <h3>What social cost of carbon is used in the calculations?</h3>
+
+        <p>
+        We used a social cost of carbon of $105 per metric ton. This social cost was estimated by the interagency working group based on the current and future damage expected to result from one metric ton of carbon dioxide emitted in 2015. 
+        </p>
+    </div>
+</div>

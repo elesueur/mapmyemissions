@@ -6,13 +6,18 @@ import { HttpModule } from '@angular/http';
 import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
-import { HomeComponent } from "./home/home.component";
 import { NguiMapModule } from "@ngui/map";
+
+import { HomeComponent } from "./home/home.component";
+import { AboutComponent } from "./about/about.component";
+import { PartnersComponent } from "./partners/partners.component";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomeComponent
+        HomeComponent,
+        AboutComponent,
+        PartnersComponent,
     ],
     imports: [
         BrowserAnimationsModule,

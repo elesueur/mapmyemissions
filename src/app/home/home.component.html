@@ -1,7 +1,10 @@
 <div class="content-container">
     <div class="content-area">
+       <div class="loader" *ngIf="!mapLoaded">
+           <div class="spinner"></div>
+       </div>
 
-       <ngui-map [options]="mapOptions">
+       <ngui-map [options]="mapOptions" [ngClass]="{'bottom-margin': activeRoute}">
             <directions-renderer
                 [suppressMarkers]="true"
                 [draggable]="true"
@@ -11,14 +14,21 @@
 
        </ngui-map>
 
-       <div class="loader" *ngIf="!mapLoaded">
-           <div class="spinner"></div>
-       </div>
-
+        <div class="results" *ngIf="directionsResult && activeRoute">
+            <h4>Route information</h4>
+            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
+            <div><b>Duration:</b> {{duration}} </div>
+            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
+            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+        </div>
     </div>
 
     <nav class="sidenav">
-        <div class="user-input">
+        <div class="user-input" [hidden]="!activeRoute" [ngClass]="{'small-visible': activeRoute}">
+            <button class="btn btn-primary btn-sm" (click)="activeRoute = false" style="width: 72px; margin-right: 10px;">Back</button> {{origin}} -> {{destination}}
+        </div>
+
+        <div class="user-input" [ngClass]="{'small-hidden':activeRoute}">
             <form (submit)="showDirection()">
             <div>
                 <input name="origin" placeholder="Enter a start address" type="text" [(ngModel)]="origin" (ngModelChange)="validate()"/>

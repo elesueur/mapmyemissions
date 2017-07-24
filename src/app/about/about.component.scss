@@ -1,0 +1,23 @@
+.vehicle-image {
+    img {
+        width: 100px;
+        margin-bottom: 10px;
+    }
+    text-align: center;
+}
+
+table {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/deep/ clr-tabs ul.nav {
+    margin-left: auto;
+    margin-right: auto;
+    width: 175px;
+}
+
+/deep/ clr-tabs section {
+    height: 300px;
+}

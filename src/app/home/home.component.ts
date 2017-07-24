@@ -104,6 +104,7 @@ export class HomeComponent {
     currentLocation: any;
     buttonEnabled = false;
     socialCost: number = 0;
+    activeRoute = false;
 
     constructor(private cdr: ChangeDetectorRef) {}
 
@@ -217,6 +218,8 @@ export class HomeComponent {
         if (this.origin === '' || this.destination === '') {
             return;
         }
+
+        this.activeRoute = true;
 
         this.direction = {
             origin: this.origin,
