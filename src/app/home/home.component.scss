@@ -37,12 +37,13 @@ $xxl-min-width: 1919px;
                 color: #AAA;
             }
             ngui-map.bottom-margin {
-                height: calc(100% - 152px);
+                height: calc(100vh - 152px - 60px);
             }
         }
 
         ngui-map {
-            height: 100%;
+            width: 100%;
+            height: calc(100vh - 60px);
         }
 
         .loader {
@@ -97,7 +98,7 @@ $xxl-min-width: 1919px;
             top: 60px;
             left: 0;
             max-width: none;
-            width: 100%;
+            width: calc(100% + 1px);
             background: none;
             .btn {
                 max-width: none;

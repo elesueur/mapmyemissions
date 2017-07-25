@@ -1,9 +1,22 @@
+$xs-width: 543px;
+
+@media screen and (max-width: $xs-width) {
+    html {
+        padding-top:10px;
+        background-color:#313131;
+    }
+}
+
 .main-container {
     overflow: hidden;
 }
 
 /deep/ .content-container {
     height: calc(100vh - 60px);
+}
+
+/deep/ .content-area {
+    -webkit-overflow-scrolling: touch;
 }
 
 .open-hamburger-menu .header .header-nav .nav-link {

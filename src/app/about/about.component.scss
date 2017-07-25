@@ -15,7 +15,10 @@ table {
 /deep/ clr-tabs ul.nav {
     margin-left: auto;
     margin-right: auto;
-    width: 175px;
+    width: 180px;
+    .nav-link.nav-item {
+        margin-right: 0px;
+    }
 }
 
 /deep/ clr-tabs section {

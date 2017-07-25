@@ -11,6 +11,7 @@ import { NguiMapModule } from "@ngui/map";
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { PartnersComponent } from "./partners/partners.component";
+import { ResourcesComponent } from "./resources/resources.component";
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { PartnersComponent } from "./partners/partners.component";
         HomeComponent,
         AboutComponent,
         PartnersComponent,
+        ResourcesComponent,
     ],
     imports: [
         BrowserAnimationsModule,
