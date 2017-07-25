@@ -14,13 +14,18 @@
 
        </ngui-map>
 
-        <div class="results" *ngIf="directionsResult && activeRoute">
-            <h4>Route information</h4>
-            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
-            <div><b>Duration:</b> {{duration}} </div>
-            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
-            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
-        </div>
+       <div class="results" *ngIf="directionsResult && activeRoute">
+            <div class="traffic-light" [ngClass]="{
+                'red': mode === 'DRIVING',
+                'orange': mode === 'TRANSIT',
+                'green': mode === 'WALKING' || mode === 'BICYCLING'
+            }"></div>
+           <h4>Route information</h4>
+           <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
+           <div><b>Duration:</b> {{duration}} </div>
+           <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
+           <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+       </div>
     </div>
 
     <nav class="sidenav">
@@ -56,6 +61,11 @@
         </div>
 
         <div class="results" *ngIf="directionsResult">
+            <div class="traffic-light" [ngClass]="{
+                'red': mode === 'DRIVING',
+                'orange': mode === 'TRANSIT',
+                'green': mode === 'WALKING' || mode === 'BICYCLING'
+            }"></div>
             <h4>Route information</h4>
             <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
             <div><b>Duration:</b> {{duration}} </div>

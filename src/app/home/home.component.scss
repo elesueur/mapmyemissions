@@ -155,3 +155,23 @@ $xxl-min-width: 1919px;
         }
     }
 }
+
+.traffic-light {
+    float: right;
+    background-image: url(../../images/traffic_lights.png);
+    height: 93px;
+    width: 40px;
+    background-size: 160px 120px;
+    background-repeat: no-repeat;
+    margin-top: 12px;
+    margin-right: 7px;
+    &.red {
+        background-position-x: 0;
+    }
+    &.orange {
+        background-position-x: -120px;
+    }
+    &.green {
+        background-position-x: -80px;
+    }
+}
