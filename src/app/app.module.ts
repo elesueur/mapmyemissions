@@ -7,11 +7,13 @@ import { ClarityModule } from 'clarity-angular';
 import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
 import { NguiMapModule } from "@ngui/map";
+import { ReCaptchaModule } from 'angular2-recaptcha';
 
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
 import { PartnersComponent } from "./partners/partners.component";
 import { ResourcesComponent } from "./resources/resources.component";
+import { FeedbackComponent } from "./feedback/feedback.component";
 
 @NgModule({
     declarations: [
@@ -20,6 +22,7 @@ import { ResourcesComponent } from "./resources/resources.component";
         AboutComponent,
         PartnersComponent,
         ResourcesComponent,
+        FeedbackComponent,
     ],
     imports: [
         BrowserAnimationsModule,
@@ -30,6 +33,7 @@ import { ResourcesComponent } from "./resources/resources.component";
         NguiMapModule.forRoot({
             apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAgMoNJo7ftPFCnX3Ue8qcJVDUsNKMAxQ4'
         }),
+        ReCaptchaModule,
         ROUTING
     ],
     providers: [],

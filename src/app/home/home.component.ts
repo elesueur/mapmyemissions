@@ -71,6 +71,7 @@ const EMISSIONS_MAP = {
     'SUBWAY': 0.19842,
     'LIGHT-RAIL': 0.17637,
     'HEAVY-RAIL': 0.04409,
+    'HEAVY_RAIL': 0.04409,
     'BUS': 0.35274,
 };
 
