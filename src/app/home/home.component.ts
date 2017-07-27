@@ -1,4 +1,4 @@
-import { Component, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { DirectionsRenderer, NguiMapComponent } from '@ngui/map';
 import { Subscription } from 'rxjs/Rx';
 
@@ -80,7 +80,6 @@ const EMISSIONS_MAP = {
     templateUrl: './home.component.html',
 })
 export class HomeComponent {
-    @ViewChild(DirectionsRenderer) directionsRendererDirective: DirectionsRenderer;
     @ViewChild(NguiMapComponent) mapComp: NguiMapComponent;
 
     private _subscriptions: Array<Subscription> = [];
@@ -96,7 +95,7 @@ export class HomeComponent {
     vehicleTypes: Array<string>;
     vehicleType: string;
     vehicleTypeStrings = VEHICLE_TYPE_STRINGS;
-    mode: string;
+    mode: string = 'TRANSIT';
     origin: string = '';
     destination: string = '';
     emissions: number = 0;
@@ -106,12 +105,8 @@ export class HomeComponent {
     buttonEnabled = false;
     socialCost: number = 0;
     activeRoute = false;
-
-    constructor(private cdr: ChangeDetectorRef) {}
-
-    directionsRenderer: google.maps.DirectionsRenderer;
-    directionsResult: google.maps.DirectionsResult;
     direction: any;
+    directionsResult: any;
 
     ngOnInit() {
         this.mapOptions = new MapOptions();
@@ -142,10 +137,6 @@ export class HomeComponent {
     }
 
     private mapInitialized() {
-        this.directionsRendererDirective['initialized$'].subscribe( directionsRenderer => {
-            this.directionsRenderer = directionsRenderer;
-        });
-
         this._subscriptions.push(this.mapComp.geolocation.getCurrentPosition().subscribe(
             position => {
                 this.mapLoaded = true;
@@ -159,18 +150,11 @@ export class HomeComponent {
         this.buttonEnabled = this.origin !== '' && this.destination !== '';
     }
 
-    directionsChanged() {
-        try {
-            this.directionsResult = this.directionsRenderer.getDirections();
-        } catch(e) {
-            console.log(e);
-            return;
-        }
+    directionsChanged(result: any) {
+        this.directionsResult = result.target.directions;
 
         this.distance = 0;
         this.emissions = 0;
-
-        console.log(this.directionsResult);
 
         let route = this.directionsResult.routes[0];
         let leg = route.legs[0];
@@ -211,8 +195,6 @@ export class HomeComponent {
 
             this.socialCost = this.emissions * SOCIAL_COST_PER_LB;
         }
-
-        this.cdr.detectChanges();
     }
 
     showDirection() {
@@ -230,10 +212,6 @@ export class HomeComponent {
 
         if (this.direction.origin === 'Current Location' && this.currentLocation) {
             this.direction.origin = this.currentLocation;
-        }
-
-        if (this.directionsRendererDirective) {
-            this.directionsRendererDirective['showDirections'](this.direction);
         }
     }
 }

@@ -29,7 +29,7 @@ $xxl-min-width: 1919px;
         @media screen and (max-width: $xs-width) {
             .results {
                 display: block;
-                position: absolute;
+                position: fixed;
                 bottom: 0;
                 width: 100%;
                 left: 0;
@@ -56,6 +56,7 @@ $xxl-min-width: 1919px;
     }
 
     nav {
+        -webkit-overflow-scrolling: touch;
         overflow-y: auto;
         background-color: #313131;
         color: #AAA;

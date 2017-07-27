@@ -6,9 +6,10 @@
 
        <ngui-map [options]="mapOptions" [ngClass]="{'bottom-margin': activeRoute}">
             <directions-renderer
+                *ngIf="activeRoute"
                 [suppressMarkers]="true"
                 [draggable]="true"
-                (directions_changed)="directionsChanged()"
+                (directions_changed)="directionsChanged($event)"
                 [directions-request]="direction">
             </directions-renderer>
 
@@ -16,9 +17,9 @@
 
        <div class="results" *ngIf="directionsResult && activeRoute">
             <div class="traffic-light" [ngClass]="{
-                'red': mode === 'DRIVING',
-                'orange': mode === 'TRANSIT',
-                'green': mode === 'WALKING' || mode === 'BICYCLING'
+                'red': direction.travelMode === 'DRIVING',
+                'orange': direction.travelMode === 'TRANSIT',
+                'green': direction.travelMode === 'WALKING' || direction.travelMode === 'BICYCLING'
             }"></div>
            <h4>Route information</h4>
            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
@@ -62,9 +63,9 @@
 
         <div class="results" *ngIf="directionsResult">
             <div class="traffic-light" [ngClass]="{
-                'red': mode === 'DRIVING',
-                'orange': mode === 'TRANSIT',
-                'green': mode === 'WALKING' || mode === 'BICYCLING'
+                'red': direction.travelMode === 'DRIVING',
+                'orange': direction.travelMode === 'TRANSIT',
+                'green': direction.travelMode === 'WALKING' || direction.travelMode === 'BICYCLING'
             }"></div>
             <h4>Route information</h4>
             <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
