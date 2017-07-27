@@ -77,8 +77,20 @@
             <h4>Route information</h4>
             <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
             <div><b>Duration:</b> {{duration}} </div>
-            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
-            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e
+               <clr-signpost>
+                   <clr-signpost-content *clrIfOpen="co2eSignpostOpen">
+                       CO<sub>2</sub>-e refers to carbon dioxide equivalent.
+                   </clr-signpost-content>
+               </clr-signpost>
+            </div>
+            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}
+               <clr-signpost>
+                   <clr-signpost-content *clrIfOpen="socialCostSignpostOpen">
+                       Assuming a cost of $105 per metric ton of carbon dioxide equivalent. See the About page for more information.
+                   </clr-signpost-content>
+               </clr-signpost>
+            </div>
         </div>
 
         <div class="steps" *ngIf="directionsResult">

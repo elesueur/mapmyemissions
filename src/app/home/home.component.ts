@@ -108,6 +108,8 @@ export class HomeComponent {
     direction: any;
     directionsResult: any;
     height: number;
+    co2eSignpostOpen = false;
+    socialCostSignpostOpen = false;
 
     ngOnInit() {
         this.mapOptions = new MapOptions();

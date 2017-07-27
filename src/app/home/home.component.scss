@@ -159,6 +159,14 @@ $xxl-min-width: 1919px;
             font-size: 16px;
             font-weight: 400;
         }
+        /deep/ .signpost-action {
+            &.btn {
+                height: 22px;
+            }
+            clr-icon {
+                margin-top: -15px;
+            }
+        }
     }
 }
 
