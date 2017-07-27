@@ -15,8 +15,6 @@ $xxl-min-width: 1919px;
         padding-top: 0;
     }
 
-    height: calc(100vh - 60px);
-
     .content-area {
         padding: 0;
         bottom: 0;
@@ -35,15 +33,21 @@ $xxl-min-width: 1919px;
                 left: 0;
                 background-color: #313131;
                 color: #AAA;
+                max-height: 150px;
+                overflow-y: scroll;
             }
             ngui-map.bottom-margin {
-                height: calc(100vh - 152px - 60px);
+                bottom: 150px !important;
             }
         }
 
         ngui-map {
-            width: 100%;
-            height: calc(100vh - 60px);
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            top: 0;
+            left: 0;
+            height: auto;
         }
 
         .loader {
@@ -106,6 +110,7 @@ $xxl-min-width: 1919px;
             }
             .user-input {
                 background-color: #313131;
+                padding-top: 0;
             }
             .steps {
                 display: none;

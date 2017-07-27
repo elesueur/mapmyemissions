@@ -107,6 +107,7 @@ export class HomeComponent {
     activeRoute = false;
     direction: any;
     directionsResult: any;
+    height: number;
 
     ngOnInit() {
         this.mapOptions = new MapOptions();
@@ -118,6 +119,22 @@ export class HomeComponent {
         this.vehicleTypes = Object.keys(VEHICLE_TYPE_STRINGS);
         this.vehicleType = this.vehicleTypes[0];
         this.drivingModeChange(this.drivingMode);
+
+        let height = window.innerHeight - 60;
+        let a = setInterval(() => {
+            window.scrollTo(0, 0);
+            this.resize();
+        }, 500); // Don't lower more than 500ms, otherwise there will be animation-problems with the  Safari toolbar
+
+        window.addEventListener('resize', () => {
+            this.resize();
+        });
+    }
+
+    resize() {
+        if (window.innerHeight != this.height) {
+            this.height = window.innerHeight - 60;
+        }
     }
 
     ngAfterContentInit() {

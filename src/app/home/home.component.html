@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container" [ngStyle]="{'height': height + 'px'}">
     <div class="content-area">
        <div class="loader" *ngIf="!mapLoaded">
            <div class="spinner"></div>
@@ -7,7 +7,6 @@
        <ngui-map [options]="mapOptions" [ngClass]="{'bottom-margin': activeRoute}">
             <directions-renderer
                 *ngIf="activeRoute"
-                [suppressMarkers]="true"
                 [draggable]="true"
                 (directions_changed)="directionsChanged($event)"
                 [directions-request]="direction">
@@ -15,17 +14,25 @@
 
        </ngui-map>
 
-       <div class="results" *ngIf="directionsResult && activeRoute">
+       <div class="results" *ngIf="activeRoute">
             <div class="traffic-light" [ngClass]="{
                 'red': direction.travelMode === 'DRIVING',
                 'orange': direction.travelMode === 'TRANSIT',
                 'green': direction.travelMode === 'WALKING' || direction.travelMode === 'BICYCLING'
             }"></div>
-           <h4>Route information</h4>
+
+           <h4 *ngIf="directionsResult">Route information</h4>
            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
            <div><b>Duration:</b> {{duration}} </div>
            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+
+           <h4 *ngIf="directionsResult">Directions</h4>
+           <ol>
+               <li *ngFor="let step of directionsResult.routes[0].legs[0].steps"
+                    [innerHTML]="step.instructions">
+               </li>
+           </ol>
        </div>
     </div>
 
