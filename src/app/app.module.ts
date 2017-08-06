@@ -15,6 +15,8 @@ import { PartnersComponent } from "./partners/partners.component";
 import { ResourcesComponent } from "./resources/resources.component";
 import { FeedbackComponent } from "./feedback/feedback.component";
 
+import { GoogleAnalyticsEventsService } from "./providers/google-analytics.provider";
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -36,7 +38,9 @@ import { FeedbackComponent } from "./feedback/feedback.component";
         ReCaptchaModule,
         ROUTING
     ],
-    providers: [],
+    providers: [
+        GoogleAnalyticsEventsService
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,0 +1,130 @@
+<div class="content-container">
+    <div class="content-area">
+        <h1>Feedback</h1>
+
+        <form *ngIf="!submitted">
+            <div class="form-group">
+                <label>Email address *</label>
+                <input type="text" style="width: 370px;" name="email"
+                     [(ngModel)]="email"/>
+            </div>
+
+            <div class="form-group">
+                <label>Will you use Map My Emissions again?</label>
+                <div class="radio-inline">
+                    <input id="use-yes" [(ngModel)]="willUse" [value]="'yes'" name="will-use" type="radio">
+                    <label for="use-yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="use-no" [(ngModel)]="willUse" [value]="'no'" name="will-use" type="radio">
+                    <label for="use-no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Did Map My Emissions affect your transportation choice?</label>
+                <div class="radio-inline">
+                    <input id="affeect-yes" [(ngModel)]="affectChoice" name="affect-choice" [value]="'yes'" type="radio">
+                    <label for="affeect-yes">
+                        Yes
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="affeect-no" [(ngModel)]="affectChoice" name="affect-choice" [value]="'no'" type="radio">
+                    <label for="affeect-no">
+                        No
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" [hidden]="affectChoice !== 'yes'">
+                <label>Great! How frequently will it affect your decisions in the future?</label>
+                <div class="radio-inline">
+                    <input id="yes-often" [(ngModel)]="yesWhy" [value]="'often'" name="yes-why" type="radio">
+                    <label for="yes-often">
+                        Often
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="yes-sometimes" [(ngModel)]="yesWhy" [value]="'sometimes'" name="yes-why" type="radio">
+                    <label for="yes-sometimes">
+                        Sometimes
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="yes-never" [(ngModel)]="yesWhy" [value]="'never'" name="yes-why" type="radio">
+                    <label for="yes-never">
+                        Never again
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group" [hidden]="affectChoice !== 'no'">
+                <label>Oh no! Why not?</label>
+                <div class="radio-inline">
+                    <input id="no-time" name="no-why" [(ngModel)]="noWhy" [value]="'time'" type="radio">
+                    <label for="no-time">
+                        Time
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="no-cost" name="no-why" [(ngModel)]="noWhy" [value]="'cost'" type="radio">
+                    <label for="no-cost">
+                        Cost
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="no-route" name="no-why" [(ngModel)]="noWhy" [value]="'route'" type="radio">
+                    <label for="no-route">
+                        Route
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="no-mode" name="no-why" [(ngModel)]="noWhy" [value]="'mode'" type="radio">
+                    <label for="no-mode">
+                        Mode Preference
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <input id="no-other" name="no-why" [(ngModel)]="noWhy" [value]="'other'" type="radio">
+                    <label for="no-other">
+                        Other
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="feedback">Send us your suggestions/feedback!</label>
+                <textarea id="feedback" rows="5" name="feedback" [(ngModel)]="feedback"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label></label>
+                <re-captcha (captchaResponse)="canSubmit = true" site_key="6LdNUSoUAAAAANQih-68iv-QmnHAA2fD-9PNz33I"></re-captcha>
+            </div>
+
+            <div class="form-group">
+                <label></label>
+                <button (click)="submit()" [disabled]="!canSubmit" class="btn btn-primary">Send</button>
+            </div>
+
+            <p>
+                * By providing your email address, you agree that we may contact
+                you about updates to this website and other related activities. We
+                may also share your email address with our partner, Earth Day
+                Initiative, who may use it to communicate with you about their
+                upcoming events and other initiatives. Your email address will not
+                be shared with any other third parties.
+            </p>
+        
+        </form>
+
+        <div *ngIf="submitted">
+            Thank you!
+        </div>
+    </div>
+</div>

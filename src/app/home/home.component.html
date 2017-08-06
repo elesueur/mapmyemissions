@@ -11,7 +11,6 @@
                 (directions_changed)="directionsChanged($event)"
                 [directions-request]="direction">
             </directions-renderer>
-
        </ngui-map>
 
        <div class="results" *ngIf="activeRoute">
@@ -25,10 +24,10 @@
            <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
            <div><b>Duration:</b> {{duration}} </div>
            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
-           <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}</div>
+           <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}} (${{socialCost * 365 | number:'1.2-2'}} annually)</div>
 
            <h4 *ngIf="directionsResult">Directions</h4>
-           <ol>
+           <ol *ngIf="directionsResult">
                <li *ngFor="let step of directionsResult.routes[0].legs[0].steps"
                     [innerHTML]="step.instructions">
                </li>
@@ -84,7 +83,7 @@
                    </clr-signpost-content>
                </clr-signpost>
             </div>
-            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}}
+            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}} (${{socialCost * 365 | number:'1.2-2'}} annually)
                <clr-signpost>
                    <clr-signpost-content *clrIfOpen="socialCostSignpostOpen">
                        Assuming a cost of $105 per metric ton of carbon dioxide equivalent. See the About page for more information.

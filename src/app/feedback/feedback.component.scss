@@ -1,0 +1,11 @@
+form .form-group {
+    padding-left: 260px;
+    margin-bottom: 22px;
+    @media screen and (max-width: 544px) {
+        padding-left: 0;
+    }
+}
+
+form .form-group>label:first-child {
+    width: 244px;
+}

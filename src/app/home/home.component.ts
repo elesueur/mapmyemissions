@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { DirectionsRenderer, NguiMapComponent } from '@ngui/map';
 import { Subscription } from 'rxjs/Rx';
+import { GoogleAnalyticsEventsService } from "../providers/google-analytics.provider";
 
 class MapOptions {
     center: string;
@@ -110,6 +111,9 @@ export class HomeComponent {
     height: number;
     co2eSignpostOpen = false;
     socialCostSignpostOpen = false;
+    count = 0;
+
+    constructor(private ga: GoogleAnalyticsEventsService) {}
 
     ngOnInit() {
         this.mapOptions = new MapOptions();
@@ -221,6 +225,8 @@ export class HomeComponent {
             return;
         }
 
+        this.count++;
+
         this.activeRoute = true;
 
         this.direction = {
@@ -228,6 +234,8 @@ export class HomeComponent {
             destination: this.destination,
             travelMode: this.mode,
         };
+
+        this.ga.emitEvent('directions', 'showDirections', this.mode, this.count);
 
         if (this.direction.origin === 'Current Location' && this.currentLocation) {
             this.direction.origin = this.currentLocation;
