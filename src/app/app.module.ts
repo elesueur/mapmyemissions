@@ -33,7 +33,7 @@ import { GoogleAnalyticsEventsService } from "./providers/google-analytics.provi
         HttpModule,
         ClarityModule.forRoot(),
         NguiMapModule.forRoot({
-            apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyAgMoNJo7ftPFCnX3Ue8qcJVDUsNKMAxQ4'
+            apiUrl: 'https://maps.google.com/maps/api/js?libraries=visualization,places,drawing&key=AIzaSyAgMoNJo7ftPFCnX3Ue8qcJVDUsNKMAxQ4'
         }),
         ReCaptchaModule,
         ROUTING

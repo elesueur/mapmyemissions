@@ -43,10 +43,10 @@
         <div class="user-input" [ngClass]="{'small-hidden':activeRoute}">
             <form (submit)="showDirection()">
             <div>
-                <input name="origin" placeholder="Enter a start address" type="text" [(ngModel)]="origin" (ngModelChange)="validate()"/>
+                <input name="origin" places-auto-complete placeholder="Enter a start address" type="text" [(ngModel)]="origin" (ngModelChange)="validate()"/>
             </div>
             <div>
-                <input name="destination" placeholder="Enter an end address" type="text" [(ngModel)]="destination" (ngModelChange)="validate()"/>
+                <input name="destination" places-auto-complete placeholder="Enter an end address" type="text" [(ngModel)]="destination" (ngModelChange)="validate()"/>
             </div>
             <div class="select">
                 <select [(ngModel)]="mode" name="mode">
