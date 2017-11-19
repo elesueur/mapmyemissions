@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { ROUTING } from "./app.routing";
 import { NguiMapModule } from "@ngui/map";
 import { ReCaptchaModule } from 'angular2-recaptcha';
+import { FacebookModule } from 'ngx-facebook';
 
 import { HomeComponent } from "./home/home.component";
 import { AboutComponent } from "./about/about.component";
@@ -36,7 +37,8 @@ import { GoogleAnalyticsEventsService } from "./providers/google-analytics.provi
             apiUrl: 'https://maps.google.com/maps/api/js?libraries=visualization,places,drawing&key=AIzaSyAgMoNJo7ftPFCnX3Ue8qcJVDUsNKMAxQ4'
         }),
         ReCaptchaModule,
-        ROUTING
+        ROUTING,
+        FacebookModule.forRoot()
     ],
     providers: [
         GoogleAnalyticsEventsService

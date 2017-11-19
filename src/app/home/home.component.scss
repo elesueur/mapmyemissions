@@ -189,3 +189,35 @@ $xxl-min-width: 1919px;
         background-position-x: -80px;
     }
 }
+
+.social {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
+}
+
+.fb-share {
+    background-image: url(/images/fb_share.png);
+    width: 63px;
+    height: 27px;
+    border: 0;
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover {
+        opacity: 1.0;
+    }
+}
+
+.twitter-tweet {
+    display: inline-block;
+    margin-top: -9px;
+    background-image: url(/images/twitter_tweet.png);
+    width: 63px;
+    height: 27px;
+    border: 0;
+    cursor: pointer;
+    opacity: 0.8;
+    &:hover {
+        opacity: 1.0;
+    }
+}

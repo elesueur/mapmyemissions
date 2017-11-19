@@ -26,7 +26,17 @@
            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}} (${{socialCost * 365 | number:'1.2-2'}} annually)</div>
 
+           <div class="social">
+               <button class="fb-share"
+                   (click)="share()">
+               </button>
+
+               <a class="btn twitter-tweet"
+                   href="https://twitter.com/intent/tweet?text=I+just+calculated+the+greenhouse+gas+emissions+associated+with+my+trip+to+{{direction?.destination}}+using+mapmyemissions.com.+You+should+try+it!&url=https://mapmyemissions.com"></a>
+           </div>
+
            <h4 *ngIf="directionsResult">Directions</h4>
+
            <ol *ngIf="directionsResult">
                <li *ngFor="let step of directionsResult.routes[0].legs[0].steps"
                     [innerHTML]="step.instructions">
@@ -90,6 +100,15 @@
                    </clr-signpost-content>
                </clr-signpost>
             </div>
+        </div>
+
+        <div class="social small-hidden">
+            <button class="fb-share"
+                (click)="share()">
+            </button>
+
+            <a class="btn twitter-tweet"
+               href="https://twitter.com/intent/tweet?text=I+just+calculated+the+greenhouse+gas+emissions+associated+with+my+trip+to+{{direction?.destination}}+using+mapmyemissions.com.+You+should+try+it!&url=https://mapmyemissions.com"></a>
         </div>
 
         <div class="steps" *ngIf="directionsResult">

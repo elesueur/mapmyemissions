@@ -2,6 +2,7 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { DirectionsRenderer, NguiMapComponent } from '@ngui/map';
 import { Subscription } from 'rxjs/Rx';
 import { GoogleAnalyticsEventsService } from "../providers/google-analytics.provider";
+import { InitParams, FacebookService, UIParams, UIResponse } from 'ngx-facebook';
 
 class MapOptions {
     center: string;
@@ -76,6 +77,8 @@ const EMISSIONS_MAP = {
     'BUS': 0.35274,
 };
 
+const FB_APP_ID = '293529794485590';
+
 @Component({
     styleUrls: ['./home.component.scss'],
     templateUrl: './home.component.html',
@@ -113,7 +116,16 @@ export class HomeComponent {
     socialCostSignpostOpen = false;
     count = 0;
 
-    constructor(private ga: GoogleAnalyticsEventsService) {}
+    constructor(private ga: GoogleAnalyticsEventsService,
+                private fb: FacebookService) {
+        let initParams: InitParams = {
+            appId: FB_APP_ID,
+            xfbml: true,
+            version: 'v2.8'
+        };
+
+        fb.init(initParams);
+    }
 
     ngOnInit() {
         this.mapOptions = new MapOptions();
@@ -240,5 +252,21 @@ export class HomeComponent {
         if (this.direction.origin === 'Current Location' && this.currentLocation) {
             this.direction.origin = this.currentLocation;
         }
+    }
+
+    share() {
+        let params: any = {
+            href: 'https://mapmyemissions.com',
+            method: 'share'
+        };
+
+        if (this.direction) {
+            params.quote = 'I just calculated the greenhouse gas emissions associated with my trip to ' +
+                this.direction.destination + ' using mapmyemissions.com. You should try it too!';
+        }
+
+        this.fb.ui(params)
+            .then((res: UIResponse) => console.log(res))
+            .catch((e: any) => console.error(e));
     }
 }
