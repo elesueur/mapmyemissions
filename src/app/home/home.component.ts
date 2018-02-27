@@ -188,6 +188,16 @@ export class HomeComponent {
             }));
     }
 
+    destChanged(newDest: any) {
+        this.destination = newDest.formatted_address;
+        this.validate();
+    }
+
+    originChanged(newOrigin: any) {
+        this.origin = newOrigin.formatted_address;
+        this.validate();
+    }
+
     validate() {
         this.buttonEnabled = this.origin !== '' && this.destination !== '';
     }

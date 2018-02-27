@@ -57,10 +57,10 @@
         <div class="user-input" [ngClass]="{'small-hidden':activeRoute}">
             <form (submit)="showDirection()">
             <div>
-                <input name="origin" places-auto-complete placeholder="Enter a start address" type="text" [(ngModel)]="origin" (ngModelChange)="validate()"/>
+                <input name="origin" places-auto-complete placeholder="Enter a start address" type="text" [(ngModel)]="origin" (place_changed)="originChanged($event)"/>
             </div>
             <div>
-                <input name="destination" places-auto-complete placeholder="Enter an end address" type="text" [(ngModel)]="destination" (ngModelChange)="validate()"/>
+                <input name="destination" places-auto-complete placeholder="Enter an end address" [(ngModel)]="destination" (place_changed)="destChanged($event)" type="text"/>
             </div>
             <div class="select">
                 <select [(ngModel)]="mode" name="mode">
@@ -77,7 +77,7 @@
                     <option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType">{{vehicleTypeStrings[vehicleType]}}</option>
                 </select>
             </div>
-            <button class="btn btn-primary" (click)="showDirection()" name="submit" [disabled]="!buttonEnabled">Go</button>
+            <button class="btn btn-primary" (click)="showDirection()" [disabled]="!buttonEnabled" name="submit">Go</button>
             </form>
         </div>
 
