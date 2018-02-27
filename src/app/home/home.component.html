@@ -26,6 +26,10 @@
            <div><b>Emissions:</b> {{emissions | number : '1.1-2'}} lb of CO<sub>2</sub>-e</div>
            <div><b>Social cost:</b> ${{socialCost | number : '1.2-2'}} (${{socialCost * 365 | number:'1.2-2'}} annually)</div>
 
+           <div *ngIf="errorMessage" class="no-results">
+               {{errorMessage}}
+           </div>
+
            <div class="social">
                <button class="fb-share"
                    (click)="share()">
@@ -37,7 +41,7 @@
 
            <h4 *ngIf="directionsResult">Directions</h4>
 
-           <ol *ngIf="directionsResult">
+           <ol *ngIf="directionsResult" class="no-results">
                <li *ngFor="let step of directionsResult.routes[0].legs[0].steps"
                     [innerHTML]="step.instructions">
                </li>
@@ -100,6 +104,10 @@
                    </clr-signpost-content>
                </clr-signpost>
             </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="no-results">
+            {{errorMessage}}
         </div>
 
         <div class="social small-hidden">

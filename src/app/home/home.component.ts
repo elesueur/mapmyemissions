@@ -19,12 +19,14 @@ const MODE_STRINGS = {
     'BICYCLING': 'Cycling',
     'TRANSIT': 'Public transit',
 };
+
 const DRIVING_MODE_STRINGS = {
     'CAR': 'Car',
     'VAN': 'Van',
     'MOTORBIKE': 'Motorcycle',
     'TAXI': 'Taxi',
 };
+
 const VEHICLE_TYPE_STRINGS ={
     'CAR-SM-GAS': 'Small gasoline (up to 1.4 L)',
     'CAR-MD-GAS': 'Medium gasoline (1.4 to 2.0 L)',
@@ -88,6 +90,8 @@ export class HomeComponent {
 
     private _subscriptions: Array<Subscription> = [];
 
+    private directionsService: google.maps.DirectionsService;
+
     mapOptions: MapOptions;
     mapLoaded = false;
 
@@ -115,6 +119,7 @@ export class HomeComponent {
     co2eSignpostOpen = false;
     socialCostSignpostOpen = false;
     count = 0;
+    errorMessage = null;
 
     constructor(private ga: GoogleAnalyticsEventsService,
                 private fb: FacebookService) {
@@ -174,6 +179,8 @@ export class HomeComponent {
     private mapInitialized() {
         this._subscriptions.push(this.mapComp.geolocation.getCurrentPosition().subscribe(
             position => {
+                this.directionsService = new google.maps.DirectionsService();
+
                 this.mapLoaded = true;
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 this.currentLocation= latLng;
@@ -246,6 +253,21 @@ export class HomeComponent {
             destination: this.destination,
             travelMode: this.mode,
         };
+
+        this.directionsService.route(this.direction, (response: any, status: any) =>  {
+            if (status === google.maps.DirectionsStatus.NOT_FOUND) {
+                this.errorMessage = `
+                    Sorry, there were no results found for ${this.direction.origin} to ${this.direction.destination}.
+                    Try using a more specific address.`;
+
+            } else if (status === google.maps.DirectionsStatus.ZERO_RESULTS) {
+                this.errorMessage = `
+                    Sorry, there were no results found for ${this.direction.origin} to ${this.direction.destination}.
+                    Try using a more specific address.`;
+            } else {
+                this.errorMessage = null;
+            }
+        });
 
         this.ga.emitEvent('directions', 'showDirections', this.mode, this.count);
 
