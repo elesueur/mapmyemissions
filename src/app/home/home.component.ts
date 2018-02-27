@@ -254,6 +254,8 @@ export class HomeComponent {
             return;
         }
 
+        this.directionsResult = null;
+
         this.count++;
 
         this.activeRoute = true;
@@ -263,6 +265,10 @@ export class HomeComponent {
             destination: this.destination,
             travelMode: this.mode,
         };
+
+        if (this.direction.origin === 'Current Location' && this.currentLocation) {
+            this.direction.origin = this.currentLocation;
+        }
 
         this.directionsService.route(this.direction, (response: any, status: any) =>  {
             if (status === google.maps.DirectionsStatus.NOT_FOUND) {
@@ -280,10 +286,6 @@ export class HomeComponent {
         });
 
         this.ga.emitEvent('directions', 'showDirections', this.mode, this.count);
-
-        if (this.direction.origin === 'Current Location' && this.currentLocation) {
-            this.direction.origin = this.currentLocation;
-        }
     }
 
     share() {
