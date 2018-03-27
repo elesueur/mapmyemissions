@@ -46,6 +46,7 @@
     "@angular/cli": "^1.0.0",
     "@angular/compiler-cli": "^4.0.1",
     "@types/core-js": "^0.9.34",
+    "@types/googlemaps": "^3.30.8",
     "@types/jasmine": "~2.2.30",
     "@types/node": "^6.0.42",
     "bootstrap": "4.0.0-alpha.5",

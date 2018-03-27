@@ -4,14 +4,13 @@ import { Subscription } from 'rxjs/Rx';
 import { GoogleAnalyticsEventsService } from "../providers/google-analytics.provider";
 import { InitParams, FacebookService, UIParams, UIResponse } from 'ngx-facebook';
 
-class MapOptions {
-    center: string;
-    geoFallbackCenter: any;
-}
-
 const KM_TO_MILES = 0.621;
 const SOCIAL_COST_PER_LB = 0.0476;  // dollars per pound
 
+class MyMapOptions implements google.maps.MapOptions {
+    geoFallbackCenter: any;
+    zoom: number;
+}
 
 const MODE_STRINGS = {
     'DRIVING': 'Drive',
@@ -92,7 +91,7 @@ export class HomeComponent {
 
     private directionsService: google.maps.DirectionsService;
 
-    mapOptions: MapOptions;
+    mapOptions: MyMapOptions;
     mapLoaded = false;
 
     modes: Array<string>;
@@ -120,6 +119,7 @@ export class HomeComponent {
     socialCostSignpostOpen = false;
     count = 0;
     errorMessage = null;
+    fallbackCenter = null;
 
     constructor(private ga: GoogleAnalyticsEventsService,
                 private fb: FacebookService) {
@@ -133,8 +133,12 @@ export class HomeComponent {
     }
 
     ngOnInit() {
-        this.mapOptions = new MapOptions();
-        this.mapOptions.geoFallbackCenter = {lat:40.7128, lng:74.0059};
+        this.fallbackCenter = {lat:40.7128, lng:74.0059};
+        this.mapOptions = {
+            zoom: 4,
+            geoFallbackCenter: this.fallbackCenter,
+        };
+
         this.modes = Object.keys(MODE_STRINGS);
         this.mode = 'TRANSIT';
         this.drivingModes = Object.keys(DRIVING_MODE_STRINGS);
@@ -177,10 +181,10 @@ export class HomeComponent {
     }
 
     private mapInitialized() {
+        this.directionsService = new google.maps.DirectionsService();
+
         this._subscriptions.push(this.mapComp.geolocation.getCurrentPosition().subscribe(
             position => {
-                this.directionsService = new google.maps.DirectionsService();
-
                 this.mapLoaded = true;
                 let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 this.currentLocation= latLng;

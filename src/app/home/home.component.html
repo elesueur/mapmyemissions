@@ -4,7 +4,8 @@
            <div class="spinner"></div>
        </div>
 
-       <ngui-map [options]="mapOptions" [ngClass]="{'bottom-margin': activeRoute}">
+       <ngui-map [ngClass]="{'bottom-margin': activeRoute}"
+                [options]="mapOptions">
             <directions-renderer
                 *ngIf="activeRoute"
                 [draggable]="true"
