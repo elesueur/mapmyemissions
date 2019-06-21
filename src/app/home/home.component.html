@@ -84,9 +84,12 @@
 
         <div class="results" *ngIf="directionsResult">
             <div class="traffic-light" [ngClass]="{
-                'red': direction.travelMode === 'DRIVING',
+                'red': direction.travelMode === 'DRIVING' &&
+                    vehicleType !== 'CAR-ELECTRIC',
                 'orange': direction.travelMode === 'TRANSIT',
-                'green': direction.travelMode === 'WALKING' || direction.travelMode === 'BICYCLING'
+                'green': direction.travelMode === 'WALKING' ||
+                    direction.travelMode === 'BICYCLING' ||
+                    vehicleType === 'CAR-ELECTRIC'
             }"></div>
             <h4>Route information</h4>
             <div><b>Distance:</b> {{distance | number : '1.1-2'}} miles</div>
